@@ -23,7 +23,7 @@ Module.register("weatherforecast",{
 		lang: config.language,
 		fade: true,
 		fadePoint: 0.25, // Start on 1/4th of the list.
-		colored: false,
+		colored: true,
 
 		initialLoadDelay: 2500, // 2.5 seconds delay. This delay is used to keep the OpenWeather API happy.
 		retryDelay: 2500,
@@ -35,7 +35,7 @@ Module.register("weatherforecast",{
 		appendLocationNameToHeader: true,
 		calendarClass: "calendar",
 
-		roundTemp: false,
+		roundTemp: true,
 
 		iconTable: {
 			"01d": "wi-day-sunny",
