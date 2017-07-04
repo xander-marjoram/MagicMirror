@@ -118,7 +118,7 @@ Module.register("currentweather",{
 		var small = document.createElement("div");
 		small.className = "normal medium";
 		
-		if (showWind) {
+		if (this.config.showWind) {
 			var windIcon = document.createElement("span");
 			windIcon.className = "wi wi-strong-wind dimmed";
 			small.appendChild(windIcon);
@@ -138,10 +138,11 @@ Module.register("currentweather",{
 				}
 				small.appendChild(windDirection);
 			}
-			var spacer = document.createElement("span");
+		}
+
+		var spacer = document.createElement("span");
 			spacer.innerHTML = "&nbsp;";
 			small.appendChild(spacer);
-		}
 
 		if (this.config.showHumidity) {
 			var humidity = document.createElement("span");
@@ -167,12 +168,12 @@ Module.register("currentweather",{
 		// sunriseSunsetTime.innerHTML = " " + this.sunriseSunsetTime;
 		// small.appendChild(sunriseSunsetTime);
 
-		var sunriseTime = document.createElement("span");
-		sunriseTime.innerHTML = " " + this.sunriseTime;
+		var sunriseTime = document.createElement("div");
+		sunriseTime.innerHTML = "Sunrise " + this.sunriseTime;
 		small.appendChild(sunriseTime);
 
-		var sunsetTime = document.createElement("span");
-		sunsetTime.innerHTML = " " + this.sunsetTime;
+		var sunsetTime = document.createElement("div");
+		sunsetTime.innerHTML = "Sunset " + this.sunsetTime;
 		small.appendChild(sunsetTime);
 
 		wrapper.appendChild(small);
@@ -243,7 +244,8 @@ Module.register("currentweather",{
 	// Override getHeader method.
 	getHeader: function() {
 		if (this.config.appendLocationNameToHeader) {
-			return this.data.header + " " + this.fetchedLocatioName;
+			//return this.data.header + " " + this.fetchedLocatioName;
+			return "Weather forecast for " + this.fetchedLocatioName;
 		}
 
 		return this.data.header;
@@ -393,8 +395,8 @@ Module.register("currentweather",{
 		}
 
 		this.sunriseSunsetTime = timeString;
-		this.sunriseTime = moment(sunrise).format("H:mm");
-		this.sunsetTime = moment(sunset).format("H:mm");
+		this.sunriseTime = moment(sunrise).format("HH:mm");
+		this.sunsetTime = moment(sunset).format("HH:mm");
 		this.sunriseSunsetIcon = (sunrise < now && sunset > now) ? "wi-sunset" : "wi-sunrise";
 
 		this.show(this.config.animationSpeed, {lockString:this.identifier});
