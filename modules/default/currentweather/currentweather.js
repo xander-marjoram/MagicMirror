@@ -393,6 +393,8 @@ Module.register("currentweather",{
 		}
 
 		this.sunriseSunsetTime = timeString;
+		this.sunriseTime = moment(sunrise).format("H:mm");
+		this.sunsetTime = moment(sunset).format("H:mm");
 		this.sunriseSunsetIcon = (sunrise < now && sunset > now) ? "wi-sunset" : "wi-sunrise";
 
 		this.show(this.config.animationSpeed, {lockString:this.identifier});
